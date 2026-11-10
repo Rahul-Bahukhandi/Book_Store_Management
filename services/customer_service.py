@@ -101,7 +101,7 @@ def search_customer(customer_id):
         query = """
         SELECT customer_id, name, email, phone
         FROM customers
-        WHERE customer_id = %s;
+        WHERE customer_id = %s AND name = %s;
         """
 
         cursor.execute(query, (customer_id,))
