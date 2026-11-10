@@ -249,7 +249,7 @@ def create_sale():
 
         # Step 12: Generate Bill
         print("\n" + "=" * 50)
-        print("              BOOK STORE BILL")
+        print("=============BOOK STORE BILL=============")
         print("=" * 50)
 
         print("Sale ID:", sale_id)
