@@ -18,7 +18,8 @@ def select_customer():
         query = """
         SELECT customer_id, name, email, phone
         FROM customers
-        where phone = %s;"""
+        where phone = %s;
+        """
 
         cursor.execute(query, (phone,))
 
