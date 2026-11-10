@@ -5,7 +5,8 @@ from services.customer_service import (
     register_customer,
     view_customers,
     search_customer,
-    update_customer
+    update_customer,
+    delete_customer
 )
 
 
@@ -20,6 +21,7 @@ class CustomerMenu:
             print("2. View All Customers")
             print("3. Search Customer")
             print("4. Update Customer")
+            print("5. Delete Customer")
             print("0. Back to Main Menu")
 
             choice = input("Enter your choice: ")
@@ -52,6 +54,10 @@ class CustomerMenu:
 
                 customer_id = int(input("Enter Customer ID: "))
                 update_customer(customer_id)
+            
+            elif choice == "5":
+                customer_id = int(input("Enter Customer ID: "))
+                delete_customer(customer_id)
 
             elif choice == "0":
                 break

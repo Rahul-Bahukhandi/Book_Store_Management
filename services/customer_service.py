@@ -20,11 +20,7 @@ def register_customer(customer):
         RETURNING customer_id;
         """
 
-        values = (
-            customer.name,
-            customer.email,
-            customer.phone
-        )
+        values = (customer.name, customer.email, customer.phone)
 
         cursor.execute(query, values)
 
@@ -74,18 +70,9 @@ def view_customers():
             print("No customers registered yet.")
             return
 
-        headers = [
-            "Customer ID",
-            "Name",
-            "Email",
-            "Phone"
-        ]
+        headers = ["Customer ID", "Name", "Email", "Phone"]
 
-        print(tabulate(
-            customers,
-            headers=headers,
-            tablefmt="grid"
-        ))
+        print(tabulate(customers, headers=headers, tablefmt="grid"))
 
     except Exception as e:
 
@@ -163,7 +150,7 @@ def update_customer(customer_id):
             SELECT * FROM customers
             WHERE customer_id = %s;
             """,
-            (customer_id,)
+            (customer_id,),
         )
 
         customer = cursor.fetchone()
@@ -191,12 +178,7 @@ def update_customer(customer_id):
         WHERE customer_id = %s;
         """
 
-        values = (
-            name,
-            email,
-            phone,
-            customer_id
-        )
+        values = (name, email, phone, customer_id)
 
         cursor.execute(query, values)
 
@@ -208,6 +190,66 @@ def update_customer(customer_id):
 
         conn.rollback()
         print("Customer update failed:", e)
+
+    finally:
+
+        if cursor:
+            cursor.close()
+
+        conn.close()
+
+
+def delete_customer(customer_id):
+
+    conn = connect_db()
+
+    if conn is None:
+        return
+
+    cursor = None
+
+    try:
+        cursor = conn.cursor()
+
+        # Check customer exists
+        cursor.execute(
+            """
+            SELECT * FROM customers
+            WHERE customer_id = %s;
+            """,
+            (customer_id,),
+        )
+
+        customer = cursor.fetchone()
+
+        if not customer:
+            print("Customer not found!")
+            return
+
+        # Confirm deletion
+        confirm = input(
+            f"Are you sure you want to delete customer '{customer[1]}'? (y/n): "
+        )
+
+        if confirm.lower() != "y":
+            print("Deletion cancelled.")
+            return
+
+        query = """
+        DELETE FROM customers
+        WHERE customer_id = %s;
+        """
+
+        cursor.execute(query, (customer_id,))
+
+        conn.commit()
+
+        print("Customer deleted successfully!")
+
+    except Exception as e:
+
+        conn.rollback()
+        print("Customer deletion failed:", e)
 
     finally:
 
