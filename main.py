@@ -11,6 +11,7 @@ class BookStoreApp:
         self.book_menu = BookMenu()
         self.customer_menu = CustomerMenu()
         self.sales_menu = SalesMenu()
+        
     def run(self):
 
         # Check database connection
