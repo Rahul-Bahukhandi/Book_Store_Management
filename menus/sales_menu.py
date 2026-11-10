@@ -13,7 +13,7 @@ class SalesMenu:
             print("\n========== SALES MANAGEMENT ==========")
             print("1. Create New Sale")
             print("2. View All Sales")
-            print("3. View Sale Details")
+            print("3. View Sale Bills")
             print("4. Back to Main Menu")
 
             choice = input("\nEnter your choice: ")
