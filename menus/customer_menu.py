@@ -28,7 +28,13 @@ class CustomerMenu:
 
                 name = input("Enter customer name: ")
                 email = input("Enter customer email: ")
-                phone = input("Enter customer phone: ")
+                
+                while True:
+                    phone = input("Enter customer phone: ")
+                    if len(phone) == 10 and phone.isdigit():
+                        break
+                    else:
+                        print("Invalid phone number! Please enter a 10-digit number.")
                 
                 customer = Customer(name, email, phone)
                 
