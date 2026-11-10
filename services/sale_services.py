@@ -330,7 +330,7 @@ def view_sales():
         conn.close()
 
 
-def view_sale_details(sale_id):
+def view_sale_bills(sale_id):
 
     conn = connect_db()
 
