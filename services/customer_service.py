@@ -215,3 +215,60 @@ def update_customer(customer_id):
             cursor.close()
 
         conn.close()
+
+def delete_customer(customer_id):
+
+    conn = connect_db()
+
+    if conn is None:
+        return
+
+    cursor = None
+
+    try:
+        cursor = conn.cursor()
+
+        # Check customer exists
+        cursor.execute(
+            """
+            SELECT * FROM customers
+            WHERE customer_id = %s;
+            """,
+            (customer_id,)
+        )
+
+        customer = cursor.fetchone()
+
+        if not customer:
+            print("Customer not found!")
+            return
+
+        # Confirm deletion
+        confirm = input(f"Are you sure you want to delete customer '{customer[1]}'? (y/n): ")
+
+        if confirm.lower() != 'y':
+            print("Deletion cancelled.")
+            return
+
+        query = """
+        DELETE FROM customers
+        WHERE customer_id = %s;
+        """
+
+        cursor.execute(query, (customer_id,))
+
+        conn.commit()
+
+        print("Customer deleted successfully!")
+
+    except Exception as e:
+
+        conn.rollback()
+        print("Customer deletion failed:", e)
+
+    finally:
+
+        if cursor:
+            cursor.close()
+
+        conn.close()
