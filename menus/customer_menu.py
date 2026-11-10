@@ -47,8 +47,8 @@ class CustomerMenu:
 
             elif choice == "3":
 
-                customer_id = int(input("Enter Customer ID: "))
-                search_customer(customer_id)
+                name = input("Enter Customer Name: ")
+                search_customer(name)
 
             elif choice == "4":
 
