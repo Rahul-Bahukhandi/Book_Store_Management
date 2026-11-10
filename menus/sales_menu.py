@@ -61,7 +61,7 @@ def sales_menu():
 
             try:
                 sale_id = int(input("Enter Sale ID: "))
-                view_sale_details(sale_id)
+                view_sale_bills(sale_id)
 
             except ValueError:
                 print("Please enter a valid Sale ID!")
