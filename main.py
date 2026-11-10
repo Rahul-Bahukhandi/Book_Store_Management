@@ -2,6 +2,7 @@ from database import connect_db
 
 from menus.book_menu import BookMenu
 from menus.customer_menu import CustomerMenu
+from menus.sales_menu import SalesMenu
 
 class BookStoreApp:
 
@@ -9,7 +10,7 @@ class BookStoreApp:
 
         self.book_menu = BookMenu()
         self.customer_menu = CustomerMenu()
-
+        self.sales_menu = SalesMenu()
     def run(self):
 
         # Check database connection
@@ -31,6 +32,7 @@ class BookStoreApp:
 
             print("1. Book Management")
             print("2. Customer Management")
+            print("3. Sales Management")
             print("0. Exit")
 
             choice = input("Enter your choice: ")
@@ -42,6 +44,9 @@ class BookStoreApp:
             elif choice == "2":
 
                 self.customer_menu.run()
+                
+            elif choice == "3":
+                self.sales_menu.run()
 
             elif choice == "0":
 
@@ -57,3 +62,4 @@ if __name__ == "__main__":
 
     app = BookStoreApp()
     app.run()
+
