@@ -18,7 +18,12 @@ def select_customer():
         query = """
         SELECT customer_id, name, email, phone
         FROM customers
+<<<<<<< HEAD
         where phone = %s;"""
+=======
+        where phone = %s;
+        """
+>>>>>>> feature/sales
 
         cursor.execute(query, (phone,))
 
@@ -249,7 +254,11 @@ def create_sale():
 
         # Step 12: Generate Bill
         print("\n" + "=" * 50)
+<<<<<<< HEAD
         print("              BOOK STORE BILL")
+=======
+        print("=============BOOK STORE BILL=============")
+>>>>>>> feature/sales
         print("=" * 50)
 
         print("Sale ID:", sale_id)
@@ -330,7 +339,11 @@ def view_sales():
         conn.close()
 
 
+<<<<<<< HEAD
 def view_sale_details(sale_id):
+=======
+def view_sale_bills(sale_id):
+>>>>>>> feature/sales
 
     conn = connect_db()
 

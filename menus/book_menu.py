@@ -43,8 +43,14 @@ class BookMenu:
 
             elif choice == "3":
 
-                book_id = int(input("Enter Book ID: "))
-                search_book(book_id)
+                try:
+                    book_id = int(input("Enter Book ID: "))
+                    search_book(book_id)
+                except ValueError as e:
+                    print(f"Error: Enter only numeric values for Book ID.")
+                finally:
+                    print("Search operation completed.")
+                
 
             elif choice == "4":
 

@@ -15,12 +15,3 @@ class Book:
         print("Stock:", self.stock)
         print("Category:", self.category)
 
-# book = Book(
-#     "Python Basics",
-#     "John Smith",
-#     450,
-#     10,
-#     "Programming"
-# )
-
-# book.display_details()

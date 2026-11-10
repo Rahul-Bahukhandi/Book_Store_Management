@@ -1,7 +1,11 @@
 from services.sale_services import(
     create_sale,
     view_sales,
+<<<<<<< HEAD
     view_sale_details,
+=======
+    view_sale_bills,
+>>>>>>> feature/sales
 )
 
 class SalesMenu:
@@ -13,7 +17,11 @@ class SalesMenu:
             print("\n========== SALES MANAGEMENT ==========")
             print("1. Create New Sale")
             print("2. View All Sales")
+<<<<<<< HEAD
             print("3. View Sale Details")
+=======
+            print("3. View Sale Bills")
+>>>>>>> feature/sales
             print("4. Back to Main Menu")
 
             choice = input("\nEnter your choice: ")
@@ -28,7 +36,11 @@ class SalesMenu:
 
                 try:
                     sale_id = int(input("Enter Sale ID: "))
+<<<<<<< HEAD
                     view_sale_details(sale_id)
+=======
+                    view_sale_bills(sale_id)
+>>>>>>> feature/sales
 
                 except ValueError:
                     print("Please enter a valid Sale ID!")
@@ -61,7 +73,11 @@ def sales_menu():
 
             try:
                 sale_id = int(input("Enter Sale ID: "))
+<<<<<<< HEAD
                 view_sale_details(sale_id)
+=======
+                view_sale_bills(sale_id)
+>>>>>>> feature/sales
 
             except ValueError:
                 print("Please enter a valid Sale ID!")
