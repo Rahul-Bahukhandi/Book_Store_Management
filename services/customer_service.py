@@ -119,6 +119,7 @@ def search_customer(name):
         else:
 
             print("Customer not found!")
+            print("Please check the name and try again.")
 
     except Exception as e:
 
