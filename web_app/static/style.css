@@ -1,0 +1,469 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    background: #1e293b;
+    color: white;
+    padding: 25px 15px;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.sidebar nav a {
+    display: block;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 14px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: #334155;
+    color: white;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 25px;
+    min-width: 0;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.menu-btn {
+    display: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* Summary Cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #00000010;
+}
+
+.card h3 {
+    color: #64748b;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.card h1 {
+    color: #1e293b;
+    font-size: 30px;
+}
+
+/* Recent Sales */
+.content-box {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+.content-box h2 {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 450px;
+}
+
+th,
+td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background: #f8fafc;
+}
+
+
+/* Book Management Page */
+
+.page-container {
+    padding: 25px;
+}
+
+.page-container .topbar {
+    margin-bottom: 25px;
+}
+
+.page-container .topbar a {
+    text-decoration: none;
+    color: #2563eb;
+}
+
+/* Forms */
+
+.book-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* Forms */
+
+.book-form input,
+.search-form input,
+.search-form select {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.book-form input {
+    flex: 1 1 180px;
+}
+
+.book-form button,
+.search-form button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.book-form button:hover,
+.search-form button:hover {
+    background: #1d4ed8;
+}
+
+
+/* Search and Category Filter */
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.search-form input {
+    width: 300px;
+    max-width: 100%;
+}
+
+.search-form select {
+    min-width: 180px;
+    background: white;
+    cursor: pointer;
+}
+
+.search-form button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background: #1d4ed8;
+}
+
+.search-form a {
+    background: #64748b;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.search-form a:hover {
+    background: #475569;
+}
+
+
+/* Table */
+
+.table-container {
+    overflow-x: auto;
+}
+
+.edit-btn {
+    display: inline-block;
+    background: #16a34a;
+    color: white;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.delete-form {
+    display: inline-block;
+}
+
+.delete-btn {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background: #15803d;
+}
+
+.delete-btn:hover {
+    background: #b91c1c;
+}
+
+/* ==============================
+   EDIT BOOK PAGE
+================================ */
+
+.edit-page {
+    background: #f1f5f9;
+    /* background-color: red !important; */
+    min-height: 100vh;
+}
+
+.edit-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 45px 25px;
+}
+
+/* Header */
+
+.edit-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.breadcrumb {
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.edit-header h1 {
+    color: #1e293b;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.back-btn {
+    background: white;
+    color: #334155;
+    padding: 11px 16px;
+    border-radius: 7px;
+    text-decoration: none;
+    border: 1px solid #e2e8f0;
+    white-space: nowrap;
+}
+
+/* Form Card */
+
+.edit-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px #00000008;
+}
+
+.card-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.book-icon {
+    background: #eff6ff;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 25px;
+}
+
+.card-heading h2 {
+    color: #1e293b;
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+.card-heading p {
+    color: #64748b;
+    font-size: 13px;
+}
+
+/* Form Grid */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.full-width {
+    grid-column: 1 / 3;
+}
+
+.form-group label {
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    outline: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px #2563eb15;
+}
+
+/* Form Buttons */
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 35px;
+    padding-top: 22px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.cancel-btn,
+.save-btn {
+    padding: 12px 22px;
+    border-radius: 7px;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.save-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+}
+
+.save-btn:hover {
+    background: #1d4ed8;
+}
+
+.cancel-btn:hover {
+    background: #e2e8f0;
+}
+
+.footer-text {
+    text-align: center;
+    color: #94a3b8;
+    margin-top: 30px;
+    font-size: 13px;
+}
+
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        display: none;
+    }
+
+    .sidebar.show {
+        display: block;
+        position: absolute;
+        z-index: 10;
+        min-height: 100vh;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+}
+
+
+
+

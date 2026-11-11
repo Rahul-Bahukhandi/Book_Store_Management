@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Store Management</title>
+    <link rel="stylesheet" href="../static/style.css" />
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <h2 class="logo">BookStore</h2>
+
+            <nav>
+                <a href="#" class="active">Dashboard</a>
+                <a href="/books">Books</a>
+                <a href="/customers">Customers</a>
+                <a href="#">Sales</a>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Topbar -->
+            <header class="topbar">
+                <button id="menuBtn" class="menu-btn">☰</button>
+                <h2>Dashboard</h2>
+                <p>Welcome, Admin!</p>
+            </header>
+            <!-- Summary Cards -->
+            <section class="cards">
+                <div class="card">
+                    <h3>Total Books</h3>
+                    <h1>{{total_books}}</h1>
+                </div>
+                <div class="card">
+                    <h3>Total Customers</h3>
+                    <h1>{{total_customers}}</h1>
+                </div>
+                <div class="card">
+                    <h3>Total Sales</h3>
+                    <h1>{{total_sales}}</h1>
+                </div>
+            </section>
+            <!-- Recent Sales -->
+            <section class="content-box">
+                <h2>Recent Sales</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sale ID</th>
+                            <th>Customer ID</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4">No Sales Available Yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    <script src="../static/script.js"></script>
+</body>
+
+</html>
