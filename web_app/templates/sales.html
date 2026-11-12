@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sales Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+     
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <!-- Header -->
+    <header class="topbar">
+        <h2>Sales Management</h2>
+        <a href="/">Back to Dashboard</a>
+    </header>
+
+
+    <!-- Create New Sale -->
+    <section class="content-box">
+
+        <h2>Create New Sale</h2>
+
+        <form action="/sales/add" method="POST" class="sales-form">
+
+            <!-- Select Customer -->
+            <label>Select Customer</label>
+
+            <select name="customer_id" required>
+
+                <option value="">Choose Customer</option>
+
+                {% for customer in customers %}
+
+                <option value="{{ customer[0] }}">
+                    {{ customer[1] }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <!-- Multiple Book Selection -->
+            <h3>Purchase Books</h3>
+
+            <div class="sales-items-wrapper">
+
+                <table class="sales-items-table">
+
+                    <thead>
+                        <tr>
+                            <th>Book</th>
+                            <th>Quantity</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="sale-items">
+
+                        <tr class="sale-item-row">
+
+                            <td>
+
+                                <select name="book_id[]" required>
+
+                                    <option value="">Choose Book</option>
+
+                                    {% for book in books %}
+
+                                    <option value="{{ book[0] }}">
+                                        {{ book[1] }} - ₹{{ book[3] }}
+                                        (Stock: {{ book[4] }})
+                                    </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </td>
+
+                            <td>
+
+                                <input
+                                    type="number"
+                                    name="quantity[]"
+                                    min="1"
+                                    placeholder="Quantity"
+                                    required>
+
+                            </td>
+
+                            <td>
+
+                                <button
+                                    type="button"
+                                    class="delete-btn remove-item">
+
+                                    Remove
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="add-book"
+                class="add-book-btn">
+
+                + Add Another Book
+
+            </button>
+
+
+            <button
+                type="submit"
+                class="create-sale-btn">
+
+                Create Sale
+
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Sales History -->
+    <section class="content-box">
+
+        <h2>Sales History</h2>
+
+
+        <!-- Search and Date Filter -->
+        <form
+            action="{{ url_for('sales') }}"
+            method="GET"
+            class="sales-filter-form">
+
+
+            <!-- Search Sale ID or Customer -->
+            <div class="filter-group">
+
+                <label>Search Sale ID / Customer</label>
+
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Enter Sale ID or Customer Name"
+                    value="{{ search }}">
+
+            </div>
+
+
+            <!-- Start Date -->
+            <div class="filter-group">
+
+                <label>From Date</label>
+
+                <input
+                    type="date"
+                    name="start_date"
+                    value="{{ start_date }}">
+
+            </div>
+
+
+            <!-- End Date -->
+            <div class="filter-group">
+
+                <label>To Date</label>
+
+                <input
+                    type="date"
+                    name="end_date"
+                    value="{{ end_date }}">
+
+            </div>
+
+
+            <!-- Filter Buttons -->
+            <div class="filter-actions">
+
+                <button
+                    type="submit"
+                    class="create-sale-btn">
+
+                    Search / Filter
+
+                </button>
+
+
+                <a
+                    href="{{ url_for('sales') }}"
+                    class="back-btn">
+
+                    Reset
+
+                </a>
+
+            </div>
+
+        </form>
+
+
+        <!-- Sales History Table -->
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Sale ID</th>
+                        <th>Customer</th>
+                        <th>Sale Date</th>
+                        <th>Total Amount</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for sale in sales %}
+
+                    <tr>
+
+                        <td>{{ sale[0] }}</td>
+
+                        <td>{{ sale[1] }}</td>
+
+                        <td>{{ sale[2] }}</td>
+
+                        <td>₹{{ sale[3] }}</td>
+
+                        <td>
+
+                            <a
+                                href="{{ url_for('view_sale_details', sale_id=sale[0]) }}"
+                                class="edit-btn">
+
+                                View Details
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+
+                    {% else %}
+
+                    <tr>
+
+                        <td colspan="5">
+                            No sales found.
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- JavaScript -->
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>

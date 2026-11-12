@@ -1,71 +1,110 @@
 <!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- BookStoreManagement SVG Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+        <rect width='100' height='100' rx='20' fill='%231e293b'/>
+        <path d='M50 35 C38 25 22 27 15 32 V70 C28 65 40 67 50 76 Z'
+              fill='white'/>
+        <path d='M50 35 C62 25 78 27 85 32 V70 C72 65 60 67 50 76 Z'
+              fill='%23cbd5e1'/>
+        <path d='M50 35 V76'
+              stroke='%231e293b'
+              stroke-width='3'
+              fill='none'/>
+      </svg>"
+    />
+
     <title>Book Store Management</title>
-    <link rel="stylesheet" href="../static/css/style.css" />
-</head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
 
-<body>
+  <body>
     <div class="dashboard">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <h2 class="logo">BookStore</h2>
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <h2 class="logo">BookStore</h2>
 
-            <nav>
-                <a href="#" class="active">Dashboard</a>
-                <a href="/books">Books</a>
-                <a href="/customers">Customers</a>
-                <a href="#">Sales</a>
-            </nav>
-        </aside>
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Topbar -->
-            <header class="topbar">
-                <button id="menuBtn" class="menu-btn">☰</button>
-                <h2>Dashboard</h2>
-                <p>Welcome, Admin!</p>
-            </header>
-            <!-- Summary Cards -->
-            <section class="cards">
-                <div class="card">
-                    <h3>Total Books</h3>
-                    <h1>{{total_books}}</h1>
-                </div>
-                <div class="card">
-                    <h3>Total Customers</h3>
-                    <h1>{{total_customers}}</h1>
-                </div>
-                <div class="card">
-                    <h3>Total Sales</h3>
-                    <h1>{{total_sales}}</h1>
-                </div>
-            </section>
-            <!-- Recent Sales -->
-            <section class="content-box">
-                <h2>Recent Sales</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Sale ID</th>
-                            <th>Customer ID</th>
-                            <th>Date</th>
-                            <th>Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="4">No Sales Available Yet.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-        </main>
+        <nav>
+          <a href="#" class="active">Dashboard</a>
+          <a href="/books">Books</a>
+          <a href="/customers">Customers</a>
+          <a href="/sales">Sales</a>
+        </nav>
+      </aside>
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Topbar -->
+        <header class="topbar">
+          <button id="menuBtn" class="menu-btn">☰</button>
+          <h2>Dashboard</h2>
+          <p>Welcome, Admin!</p>
+        </header>
+        <!-- Summary Cards -->
+        <section class="cards">
+          <div class="card">
+            <h3>Total Books</h3>
+            <h1>{{total_books}}</h1>
+          </div>
+          <div class="card">
+            <h3>Total Customers</h3>
+            <h1>{{total_customers}}</h1>
+          </div>
+          <div class="card">
+            <h3>Total Sales</h3>
+            <h1>{{total_sales}}</h1>
+          </div>
+        </section>
+        <!-- Recent Sales -->
+        <section class="content-box">
+          <h2>Recent Sales</h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Sale ID</th>
+                  <th>Customer</th>
+                  <th>Sale Date</th>
+                  <th>Total Amount</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for sale in recent_sales %}
+
+                <tr>
+                  <td>{{ sale[0] }}</td>
+
+                  <td>{{ sale[1] }}</td>
+
+                  <td>{{ sale[2] }}</td>
+
+                  <td>₹{{ sale[3] }}</td>
+                </tr>
+
+                {% else %}
+
+                <tr>
+                  <td colspan="5">No recent sales found.</td>
+                </tr>
+
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
     </div>
     <script src="../static/js/script.js"></script>
-</body>
-
+  </body>
 </html>

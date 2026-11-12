@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Details Management</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style1.css') }}">
+</head>
+<body>
+    <div class="sale-detail-container">
+
+    <!-- Page Header -->
+    <div class="sale-detail-header">
+        <div>
+            <h2>Sale Details</h2>
+            <p>Complete information about this transaction</p>
+        </div>
+
+        <div class="header-actions">
+            <button onclick="window.print()" class="print-btn">🖨 Print Bill</button>
+    
+            <a href="{{ url_for('sales') }}" class="back-btn">
+                ← Back to Sales
+            </a>
+        </div>
+    </div>
+
+    <!-- Sale and Customer Information -->
+    <div class="detail-grid">
+
+        <div class="detail-card">
+            <h3>Sale Information</h3>
+
+            <div class="detail-row">
+                <span>Sale ID</span>
+                <strong>#{{ sale[0] }}</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Sale Date</span>
+                <strong>{{ sale[1] }}</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Total Amount</span>
+                <strong>₹{{ "%.2f"|format(sale[2]) }}</strong>
+            </div>
+        </div>
+
+        <div class="detail-card">
+            <h3>Customer Information</h3>
+
+            <div class="detail-row">
+                <span>Name</span>
+                <strong>{{ sale[3] }}</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Email</span>
+                <strong>{{ sale[4] }}</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Phone</span>
+                <strong>{{ sale[5] }}</strong>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Purchased Books -->
+    <div class="items-card">
+
+        <h3>Purchased Books</h3>
+
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for item in sale_items %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ item[0] }}</td>
+                    <td>{{ item[1] }}</td>
+                    <td>{{ item[2] }}</td>
+                    <td>₹{{ "%.2f"|format(item[3]) }}</td>
+                    <td>₹{{ "%.2f"|format(item[4]) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Grand Total -->
+        <div class="total-section">
+            <div class="total-box">
+                <h3>Grand Total</h3>
+                <div class="total-amount">
+                    ₹{{ "%.2f"|format(sale[2]) }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

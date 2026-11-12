@@ -1,0 +1,115 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Edit Customer | BookStore</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="edit-page">
+
+    <div class="edit-container">
+
+        <!-- Header -->
+        <div class="edit-header">
+            <div>
+                <p class="breadcrumb">Customers / Edit Customer</p>
+                <h1>Edit Customer Details</h1>
+                <p class="subtitle">Update your customer information below.</p>
+            </div>
+
+            <a href="{{ url_for('customers') }}" class="back-btn">
+                ← Back to Customers
+            </a>
+        </div>
+
+        <!-- Edit Form Card -->
+        <div class="edit-card">
+
+            <div class="card-heading">
+                <div class="book-icon">👤</div>
+
+                <div>
+                    <h2>Customer Information</h2>
+                    <p>Customer ID: #{{ customer[0] }}</p>
+                </div>
+            </div>
+
+            <form
+                action="{{ url_for('update_customer', customer_id=customer[0]) }}"
+                method="POST"
+            >
+
+                <div class="form-grid">
+
+                    <!-- Customer Name -->
+                    <div class="form-group full-width">
+                        <label>Customer Name</label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            value="{{ customer[1] }}"
+                            placeholder="Enter customer name"
+                            required
+                        />
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label>Email Address</label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            value="{{ customer[2] }}"
+                            placeholder="Enter email address"
+                            required
+                        />
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="form-group">
+                        <label>Phone Number</label>
+
+                        <input
+                            type="tel"
+                            name="phone"
+                            value="{{ customer[3] }}"
+                            placeholder="Enter 10 digit phone number"
+                            pattern="[0-9]{10}"
+                            maxlength="10"
+                            required
+                        />
+                    </div>
+
+                </div>
+
+                <!-- Buttons -->
+                <div class="form-actions">
+
+                    <a href="{{ url_for('customers') }}" class="cancel-btn">
+                        Cancel
+                    </a>
+
+                    <button type="submit" class="save-btn">
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+        <p class="footer-text">Book Store Management System</p>
+
+    </div>
+
+</body>
+</html>
