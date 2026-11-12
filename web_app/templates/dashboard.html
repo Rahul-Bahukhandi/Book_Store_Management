@@ -46,7 +46,7 @@
       <main class="main-content">
         <!-- Topbar -->
         <header class="topbar">
-          <button id="menuBtn" class="menu-btn">☰</button>
+          <button id="menuBtn" class="menu-btn" type="button" aria-label="Open navigation menu" aria-controls="sidebar">☰</button>
           <h2>Dashboard</h2>
           <p>Welcome, Admin!</p>
         </header>
@@ -95,7 +95,7 @@
                 {% else %}
 
                 <tr>
-                  <td colspan="5">No recent sales found.</td>
+                  <td colspan="4">No recent sales found.</td>
                 </tr>
 
                 {% endfor %}
@@ -105,6 +105,6 @@
         </section>
       </main>
     </div>
-    <script src="../static/js/script.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   </body>
 </html>

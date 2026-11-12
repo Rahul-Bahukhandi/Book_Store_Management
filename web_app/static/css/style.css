@@ -661,3 +661,337 @@ th {
     display: inline-block;
     white-space: nowrap;
 }
+
+/* ==================================================
+   RESPONSIVE LAYOUT OVERRIDES
+   Layout only: existing colors and visual theme unchanged
+================================================== */
+
+/* Prevent page-level horizontal overflow */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.dashboard {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.sidebar {
+    flex: 0 0 240px;
+}
+
+.main-content {
+    min-width: 0;
+    width: 100%;
+}
+
+.content-box,
+.card,
+.edit-card {
+    min-width: 0;
+}
+
+.table-container,
+.sales-items-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    width: 100%;
+}
+
+img,
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .dashboard {
+        align-items: stretch;
+    }
+
+    .sidebar {
+        flex-basis: 210px;
+        width: 210px;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .report-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .page-container {
+        padding: 20px;
+    }
+
+    .edit-container {
+        padding: 30px 20px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    .dashboard {
+        display: block;
+        width: 100%;
+    }
+
+    /* Mobile navigation drawer */
+    .sidebar {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: min(280px, 85vw);
+        min-height: 100vh;
+        height: 100vh;
+        overflow-y: auto;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+    }
+
+    .sidebar.show {
+        display: block;
+        position: fixed;
+        transform: translateX(0);
+    }
+
+    .main-content {
+        width: 100%;
+        padding: 16px;
+        margin: 0;
+    }
+
+    .menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        min-width: 42px;
+        min-height: 42px;
+    }
+
+    .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .topbar h2 {
+        flex: 1 1 auto;
+        min-width: 0;
+        font-size: 20px;
+    }
+
+    .topbar p {
+        flex: 1 1 100%;
+        margin: 0;
+    }
+
+    .cards,
+    .report-cards {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .card h1 {
+        font-size: 26px;
+    }
+
+    .content-box {
+        width: 100%;
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+
+    .content-box h2 {
+        font-size: 18px;
+        margin-bottom: 14px;
+    }
+
+    .page-container {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .page-container .topbar {
+        align-items: flex-start;
+    }
+
+    .page-container .topbar h2 {
+        flex: 1 1 100%;
+    }
+
+    .page-container .topbar a {
+        max-width: 100%;
+    }
+
+    /* Keep wide tables usable with horizontal scrolling */
+    .table-container table,
+    .sales-items-wrapper table {
+        min-width: 550px;
+    }
+
+    /* Forms stack vertically */
+    .book-form,
+    .search-form,
+    .sales-filter-form {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .book-form input,
+    .search-form input,
+    .search-form select,
+    .filter-group,
+    .filter-group input,
+    .sales-form select,
+    .sales-form input {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .filter-actions {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-actions > * {
+        width: 100%;
+        text-align: center;
+    }
+
+    .book-form button,
+    .search-form button,
+    .search-form a,
+    .add-book-btn,
+    .create-sale-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .edit-container {
+        width: 100%;
+        padding: 20px 14px;
+    }
+
+    .edit-header {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .edit-header h1 {
+        font-size: 23px;
+    }
+
+    .edit-card {
+        padding: 18px;
+    }
+
+    .card-heading {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .form-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .form-actions {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 10px;
+        margin-top: 24px;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .sales-items-table {
+        min-width: 550px;
+    }
+
+    .report-card {
+        padding: 18px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+    .main-content {
+        padding: 12px;
+    }
+
+    .page-container {
+        padding: 10px;
+    }
+
+    .content-box {
+        padding: 13px;
+    }
+
+    .topbar h2 {
+        font-size: 18px;
+    }
+
+    .card h1 {
+        font-size: 23px;
+    }
+
+    .edit-card {
+        padding: 14px;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .sidebar {
+        transition: none;
+    }
+}
