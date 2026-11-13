@@ -20,11 +20,19 @@ body {
     background: #1e293b;
     color: white;
     padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .logo {
     text-align: center;
     margin-bottom: 35px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar nav a {
@@ -40,6 +48,28 @@ body {
 .sidebar nav a.active {
     background: #334155;
     color: white;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: calc(100% - 28px);
+    margin: auto 14px 20px;
+    padding: 12px;
+    background: #334155;
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid #475569;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.logout-btn:hover {
+    background: #475569;
 }
 
 /* Main Content */
@@ -429,6 +459,97 @@ th {
     font-size: 13px;
 }
 
+/* ADMIN AUTHENTICATION */
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 420px;
+    padding: 35px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.auth-box h2,
+.auth-box h3 {
+    text-align: center;
+    color: #1e293b;
+    margin-bottom: 25px;
+}
+
+.auth-tabs {
+    display: flex;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.auth-tabs button {
+    flex: 1;
+    padding: 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.auth-tabs button.active {
+    border-bottom: 3px solid #1e293b;
+    font-weight: 600;
+}
+
+.auth-box form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.auth-box input:focus {
+    outline: none;
+    border-color: #64748b;
+}
+
+.auth-box form > button {
+    padding: 12px;
+    background: #1e293b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.auth-box form p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.auth-box form a {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+@media (max-width: 480px) {
+    .auth-box {
+        padding: 25px 20px;
+    }
+}
 
 /* Responsive Design */
 @media (max-width: 900px) {
@@ -994,3 +1115,191 @@ textarea {
         transition: none;
     }
 }
+
+
+/* TOAST NOTIFICATION */
+
+.toast-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 99999;
+
+    min-width: 280px;
+    max-width: 380px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    padding: 15px 18px;
+
+    background: #ffffff;
+    color: #1e293b;
+
+    border-radius: 8px;
+    border-left: 5px solid #16a34a;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+
+    animation: toastSlide 0.3s ease;
+}
+
+.toast-message.error {
+    border-left-color: #dc2626;
+}
+
+.toast-message.success {
+    border-left-color: #16a34a;
+}
+
+.toast-close {
+    border: none;
+    background: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #64748b;
+}
+
+@keyframes toastSlide {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .toast-message {
+        left: 15px;
+        right: 15px;
+        min-width: auto;
+    }
+}
+
+
+/* =====================================
+   BOOK RENTALS PAGE
+===================================== */
+
+/* Rental Form Section */
+.rental-form-section {
+    margin-bottom: 20px;
+    padding: 28px;
+}
+
+.rental-form-section h2 {
+    color: #1e293b;
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+/* Rental Form */
+.rental-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 10px;
+}
+
+.rental-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.rental-form-grid > div {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.rental-form-grid label {
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.rental-form-grid input,
+.rental-form-grid select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #1e293b;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.rental-form-grid input:focus,
+.rental-form-grid select:focus {
+    border-color: #1e293b;
+    box-shadow: 0 0 0 3px #1e293b15;
+}
+
+/* Rent Book Button */
+.rental-submit-btn {
+    width: fit-content;
+    min-width: 140px;
+    padding: 12px 24px;
+    background: #1e293b;
+    color: #ffffff;
+    border: none;
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.rental-submit-btn:hover {
+    background: #334155;
+    transform: translateY(-1px);
+}
+
+/* Back to Dashboard Button */
+.rental-back-btn {
+    display: inline-block;
+    padding: 11px 17px;
+    background: #1e293b;
+    color: #ffffff;
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.rental-back-btn:hover {
+    background: #334155;
+}
+
+/* Rental Form Responsive */
+@media (max-width: 600px) {
+
+    .rental-form-section {
+        padding: 18px;
+    }
+
+    .rental-form-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+
+    .rental-submit-btn {
+        width: 100%;
+    }
+
+    .rental-back-btn {
+        text-align: center;
+        width: 100%;
+    }
+}
+

@@ -1,3 +1,34 @@
+// =========================
+// TOAST NOTIFICATION
+// =========================
+    function showToast(message, category = "success") {
+
+    const toast = document.createElement("div");
+
+    toast.className = `toast-message ${category}`;
+
+    toast.innerHTML = `
+        <span class="toast-text"></span>
+        <button class="toast-close" type="button">&times;</button>
+    `;
+
+    // Safely display message as text
+    toast.querySelector(".toast-text").textContent = message;
+
+    document.body.appendChild(toast);
+
+    toast.querySelector(".toast-close").addEventListener("click", () => {
+        toast.remove();
+    });
+
+    setTimeout(() => {
+        toast.remove();
+    }, 4000);
+}
+
+// =========================
+// EXISTING PROJECT SCRIPTS
+// =========================
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -64,5 +95,4 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     }
-
 });

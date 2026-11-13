@@ -36,17 +36,34 @@
         <h2 class="logo">BookStore</h2>
 
         <nav>
-          <a href="#" class="active">Dashboard</a>
-          <a href="/books">Books</a>
-          <a href="/customers">Customers</a>
-          <a href="/sales">Sales</a>
+          <a href="{{ url_for('dashboard') }}" class="active">Dashboard</a>
+
+          <a href="{{ url_for('books') }}">Books</a>
+
+          <a href="{{ url_for('customers') }}">Customers</a>
+
+          <a href="{{ url_for('sales') }}">Sales</a>
+
+          <a href="{{ url_for('rentals') }}">Book Rentals</a>
         </nav>
+        <a href="{{ url_for('admin_logout') }}" class="logout-btn">
+          <span>↪</span> Logout
+        </a>
       </aside>
+      
       <!-- Main Content -->
       <main class="main-content">
         <!-- Topbar -->
         <header class="topbar">
-          <button id="menuBtn" class="menu-btn" type="button" aria-label="Open navigation menu" aria-controls="sidebar">☰</button>
+          <button
+            id="menuBtn"
+            class="menu-btn"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-controls="sidebar"
+          >
+            ☰
+          </button>
           <h2>Dashboard</h2>
           <p>Welcome, Admin!</p>
         </header>
@@ -106,5 +123,14 @@
       </main>
     </div>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    {% if toast %}
+    <script>
+      showToast(
+          {{ toast.message | tojson }},
+          {{ toast.category | tojson }}
+      );
+    </script>
+    {% endif %}
   </body>
 </html>

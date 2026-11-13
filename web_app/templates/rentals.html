@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Book Rentals | BookStore</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+
+        <h2 class="logo">BookStore</h2>
+
+        <nav>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('books') }}">Books</a>
+            <a href="{{ url_for('customers') }}">Customers</a>
+            <a href="{{ url_for('sales') }}">Sales</a>
+            <a href="{{ url_for('rentals') }}" class="active">
+                Book Rentals
+            </a>
+        </nav>
+
+        <a href="{{ url_for('admin_logout') }}" class="logout-btn">
+            <span>↪</span> Logout
+        </a>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <button id="menuBtn"
+                    class="menu-btn"
+                    type="button"
+                    aria-label="Open navigation menu"
+                    aria-controls="sidebar">
+                ☰
+            </button>
+
+            <h2>Book Rentals</h2>
+
+            <a href="{{ url_for('dashboard') }}" class="rental-back-btn"> ← Back to Dashboard </a>
+
+        </header>
+
+
+        <!-- Add Rental Form -->
+        <section class="content-box rental-form-section">
+
+            <h2>Rent a Book</h2>
+
+            <form action="{{ url_for('add_rental') }}"
+                  method="POST"
+                  class="rental-form">
+
+                <div class="rental-form-grid">
+
+                    <div>
+                        <label for="customer_id">Select Customer</label>
+
+                        <select name="customer_id"
+                                id="customer_id"
+                                required>
+
+                            <option value="">Choose Customer</option>
+
+                            {% for customer in customers %}
+                                <option value="{{ customer[0] }}">
+                                    {{ customer[1] }} - {{ customer[2] }}
+                                </option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <label for="book_id">Select Book</label>
+
+                        <select name="book_id"
+                                id="book_id"
+                                required>
+
+                            <option value="">Choose Book</option>
+
+                            {% for book in books %}
+                                <option value="{{ book[0] }}">
+                                    {{ book[1] }} - ₹{{ book[3] }}
+                                    (Stock: {{ book[4] }})
+                                </option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <label for="rental_days">Rental Duration (Days)</label>
+
+                        <input type="number"
+                               name="rental_days"
+                               id="rental_days"
+                               min="1"
+                               value="7"
+                               required>
+                    </div>
+
+
+                    <div>
+                        <label for="daily_rent">Daily Rent (₹)</label>
+
+                        <input type="number"
+                               name="daily_rent"
+                               id="daily_rent"
+                               min="0.01"
+                               step="0.01"
+                               value="20"
+                               required>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="rental-submit-btn">
+                    Rent Book
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Rental Records -->
+        <section class="content-box">
+
+            <h2>Rental Records</h2>
+
+            <div class="table-container">
+
+                <table class="rental-table">
+
+                    <thead>
+                        <tr>
+                            <th>Rental ID</th>
+                            <th>Customer</th>
+                            <th>Phone</th>
+                            <th>Book</th>
+                            <th>Rental Date</th>
+                            <th>Due Date</th>
+                            <th>Daily Rent</th>
+                            <th>Total Rent</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for rental in rentals %}
+
+                        <tr>
+
+                            <td>{{ rental[0] }}</td>
+
+                            <td>{{ rental[1] }}</td>
+
+                            <td>
+                                {{ rental[2] }}
+
+                                {% if rental[2] %}
+                                    <a href="https://wa.me/91{{ rental[2] }}"
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       class="rental-whatsapp">
+                                        WhatsApp
+                                    </a>
+                                {% endif %}
+                            </td>
+
+                            <td>{{ rental[3] }}</td>
+
+                            <td>{{ rental[4] }}</td>
+
+                            <td>{{ rental[5] }}</td>
+
+                            <td>₹{{ rental[7] }}</td>
+
+                            <td>₹{{ rental[9] }}</td>
+
+                            <td>
+                                <span class="rental-status status-{{ rental[8] }}">
+                                    {{ rental[8]|capitalize }}
+                                </span>
+                            </td>
+
+
+                            <td class="rental-actions">
+
+                                {% if rental[8] == 'active' or rental[8] == 'overdue' %}
+
+                                    <form action="{{ url_for('return_rental', rental_id=rental[0]) }}"
+                                          method="POST"
+                                          onsubmit="return confirm('Are you sure you want to return this book?')">
+
+                                        <button type="submit"
+                                                class="rental-action-btn">
+                                            Return
+                                        </button>
+
+                                    </form>
+
+
+                                    <form action="{{ url_for('purchase_rental', rental_id=rental[0]) }}"
+                                          method="POST"
+                                          onsubmit="return confirm('Confirm purchase? Customer will pay book price plus accumulated rent.')">
+
+                                        <button type="submit"
+                                                class="rental-action-btn">
+                                            Purchase
+                                        </button>
+
+                                    </form>
+
+                                {% else %}
+
+                                    <span>Completed</span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+                            <td colspan="10">
+                                No rental records found.
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+
+{% if toast %}
+<script>
+    showToast(
+        {{ toast.message | tojson }},
+        {{ toast.category | tojson }}
+    );
+</script>
+{% endif %}
+
+</body>
+</html>
