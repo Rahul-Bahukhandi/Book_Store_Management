@@ -151,7 +151,13 @@
 
                             <td>₹{{ rental[7] }}</td>
 
-                            <td>₹{{ rental[9] }}</td>
+                            <td>
+                                {% if rental[9] is not none %}
+                                    ₹{{ rental[9] }}
+                                {% else %}
+        —
+                                {% endif %}
+                            </td>
 
                             <td>
                                 <span class="rental-status status-{{ rental[8] }}">

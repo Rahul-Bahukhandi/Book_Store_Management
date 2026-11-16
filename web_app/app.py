@@ -981,9 +981,11 @@ def rentals():
                     ELSE r.status
                 END AS display_status,
                 CASE
-                    WHEN r.status = 'active'
-                        THEN r.daily_rent * GREATEST(CURRENT_DATE - r.rental_date, 0)
-                    ELSE COALESCE(r.final_rent, 0)
+                    WHEN r.status = 'returned'
+                        THEN COALESCE(r.final_rent, 0)
+                    WHEN r.status = 'purchased'
+                        THEN COALESCE(r.final_rent, 0)
+                    ELSE NULL
                 END AS current_rent,
                 b.price AS book_price,
                 r.return_date,
@@ -1023,7 +1025,7 @@ def add_rental():
     conn = connect_db()
 
     if conn is None:
-        return "Database Connection Failed!"
+        return f"Database Connection Failed!"
 
     cursor = None
 
@@ -1112,7 +1114,7 @@ def return_rental(rental_id):
     conn = connect_db()
 
     if conn is None:
-        return "Database Connection Failed!"
+        return f"Database Connection Failed!"
 
     cursor = None
 
@@ -1139,7 +1141,7 @@ def return_rental(rental_id):
 
         # The agreed rule: rent keeps increasing until the book is returned.
         cursor.execute("""
-            SELECT %s * GREATEST(CURRENT_DATE - %s, 0);
+            SELECT %s * GREATEST(CURRENT_DATE - %s, 1);
         """, (daily_rent, rental_date))
         final_rent = cursor.fetchone()[0]
 
@@ -1185,7 +1187,7 @@ def purchase_rental(rental_id):
     conn = connect_db()
 
     if conn is None:
-        return "Database Connection Failed!"
+        return f"Database Connection Failed!"
 
     cursor = None
 
@@ -1250,7 +1252,7 @@ def purchase_rental(rental_id):
                 purchase_date = CURRENT_DATE,
                 final_rent = %s
             WHERE rental_id = %s;
-        """, (accumulated_rent, rental_id))
+        """, (total_amount, rental_id))
 
         conn.commit()
         set_toast(
