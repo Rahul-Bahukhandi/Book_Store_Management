@@ -1,19 +1,7 @@
-
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Edit Customer | BookStore</title>
-
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-
-<body class="edit-page">
-
-    <div class="edit-container">
+{% extends "base.html" %}
+{% block title %}Edit Customer | BookStore{% endblock %}
+{% block content %}
+<div class="edit-container">
 
         <!-- Header -->
         <div class="edit-header">
@@ -110,6 +98,4 @@
         <p class="footer-text">Book Store Management System</p>
 
     </div>
-
-</body>
-</html>
+{% endblock %}

@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales Details Management</title>
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style1.css') }}">
-</head>
-<body>
-    <div class="sale-detail-container">
+{% extends "base.html" %}
+{% block title %}Sale Details | BookStore{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
+{% endblock %}
+{% block content %}
+<div class="sale-detail-container">
 
     <!-- Page Header -->
     <div class="sale-detail-header">
@@ -113,5 +109,4 @@
     </div>
 
 </div>
-</body>
-</html>
+{% endblock %}

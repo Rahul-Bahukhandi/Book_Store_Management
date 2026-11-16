@@ -1,69 +1,8 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- BookStoreManagement SVG Favicon -->
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-        <rect width='100' height='100' rx='20' fill='%231e293b'/>
-        <path d='M50 35 C38 25 22 27 15 32 V70 C28 65 40 67 50 76 Z'
-              fill='white'/>
-        <path d='M50 35 C62 25 78 27 85 32 V70 C72 65 60 67 50 76 Z'
-              fill='%23cbd5e1'/>
-        <path d='M50 35 V76'
-              stroke='%231e293b'
-              stroke-width='3'
-              fill='none'/>
-      </svg>"
-    />
-
-    <title>Book Store Management</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}"
-    />
-  </head>
-
-  <body>
-    <div class="dashboard">
-      <!-- Sidebar -->
-      <aside class="sidebar" id="sidebar">
-        <h2 class="logo">BookStore</h2>
-
-        <nav>
-          <a href="{{ url_for('dashboard') }}" class="active">Dashboard</a>
-
-          <a href="{{ url_for('books') }}">Books</a>
-
-          <a href="{{ url_for('customers') }}">Customers</a>
-
-          <a href="{{ url_for('sales') }}">Sales</a>
-
-          <a href="{{ url_for('rentals') }}">Book Rentals</a>
-        </nav>
-        <a href="{{ url_for('admin_logout') }}" class="logout-btn">
-          <span>↪</span> Logout
-        </a>
-      </aside>
-      
-      <!-- Main Content -->
-      <main class="main-content">
-        <!-- Topbar -->
+{% extends "base.html" %}
+{% block title %}Dashboard | BookStore{% endblock %}
+{% block content %}
+<!-- Topbar -->
         <header class="topbar">
-          <button
-            id="menuBtn"
-            class="menu-btn"
-            type="button"
-            aria-label="Open navigation menu"
-            aria-controls="sidebar"
-          >
-            ☰
-          </button>
           <h2>Dashboard</h2>
           <p>Welcome, Admin!</p>
         </header>
@@ -120,17 +59,11 @@
             </table>
           </div>
         </section>
-      </main>
-    </div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
-    {% if toast %}
-    <script>
-      showToast(
-          {{ toast.message | tojson }},
-          {{ toast.category | tojson }}
-      );
-    </script>
-    {% endif %}
-  </body>
-</html>
+{% endblock %}
+{% block page_scripts %}
+{% if toast %}
+<script>
+    showToast({{ toast.message | tojson }}, {{ toast.category | tojson }});
+</script>
+{% endif %}
+{% endblock %}

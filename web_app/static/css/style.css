@@ -1303,3 +1303,31 @@ textarea {
     }
 }
 
+
+
+/* SHARED FIXED SIDEBAR LAYOUT */
+.app-layout { display: block; min-height: 100vh; }
+.app-layout > .sidebar {
+    position: fixed; top: 0; left: 0; bottom: 0;
+    width: 240px; height: 100vh; min-height: 100vh;
+    overflow-y: auto; z-index: 1000;
+}
+.app-layout > .main-content {
+    margin-left: 240px; width: calc(100% - 240px); min-height: 100vh;
+}
+.layout-menu-row { display: none; }
+@media (max-width: 900px) and (min-width: 601px) {
+    .app-layout > .sidebar { width: 210px; }
+    .app-layout > .main-content { margin-left: 210px; width: calc(100% - 210px); }
+}
+@media (max-width: 600px) {
+    .app-layout { display: block; }
+    .app-layout > .sidebar {
+        width: min(280px, 85vw); transform: translateX(-100%);
+        transition: transform 0.25s ease;
+    }
+    .app-layout > .sidebar.show { transform: translateX(0); }
+    .app-layout > .main-content { margin-left: 0; width: 100%; }
+    .layout-menu-row { display: flex; align-items: center; min-height: 42px; margin-bottom: 8px; }
+}
+.app-layout .sale-detail-container { padding: 10px 5px 30px; }

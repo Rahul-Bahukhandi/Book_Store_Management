@@ -1,54 +1,7 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Book Rentals | BookStore</title>
-
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-
-<body>
-
-<div class="dashboard">
-
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-
-        <h2 class="logo">BookStore</h2>
-
-        <nav>
-            <a href="{{ url_for('dashboard') }}">Dashboard</a>
-            <a href="{{ url_for('books') }}">Books</a>
-            <a href="{{ url_for('customers') }}">Customers</a>
-            <a href="{{ url_for('sales') }}">Sales</a>
-            <a href="{{ url_for('rentals') }}" class="active">
-                Book Rentals
-            </a>
-        </nav>
-
-        <a href="{{ url_for('admin_logout') }}" class="logout-btn">
-            <span>↪</span> Logout
-        </a>
-
-    </aside>
-
-
-    <!-- Main Content -->
-    <main class="main-content">
-
-        <header class="topbar">
-
-            <button id="menuBtn"
-                    class="menu-btn"
-                    type="button"
-                    aria-label="Open navigation menu"
-                    aria-controls="sidebar">
-                ☰
-            </button>
+{% extends "base.html" %}
+{% block title %}Book Rentals | BookStore{% endblock %}
+{% block content %}
+<header class="topbar">
 
             <h2>Book Rentals</h2>
 
@@ -261,23 +214,11 @@
             </div>
 
         </section>
-
-    </main>
-
-</div>
-
-
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
-
+{% endblock %}
+{% block page_scripts %}
 {% if toast %}
 <script>
-    showToast(
-        {{ toast.message | tojson }},
-        {{ toast.category | tojson }}
-    );
+    showToast({{ toast.message | tojson }}, {{ toast.category | tojson }});
 </script>
 {% endif %}
-
-</body>
-</html>
+{% endblock %}

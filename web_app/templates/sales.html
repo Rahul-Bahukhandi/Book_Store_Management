@@ -1,26 +1,10 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Sales Management</title>
-
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
-     
-</head>
-
-<body>
-
-<div class="page-container">
-
-    <!-- Header -->
+{% extends "base.html" %}
+{% block title %}Sales Management | BookStore{% endblock %}
+{% block content %}
+<!-- Header -->
     <header class="topbar">
         <h2>Sales Management</h2>
-        <a href="/">Back to Dashboard</a>
+        <a href="{{ url_for('dashboard') }}" class="rental-back-btn"> ← Back to Dashboard </a>
     </header>
 
 
@@ -286,13 +270,4 @@
         </div>
 
     </section>
-
-</div>
-
-
-<!-- JavaScript -->
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
-</body>
-
-</html>
+{% endblock %}
