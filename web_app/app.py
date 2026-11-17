@@ -217,7 +217,7 @@ def dashboard():
             JOIN customers c
                 ON s.customer_id = c.customer_id
             ORDER BY s.sale_date DESC, s.sale_id DESC
-            LIMIT 5;
+            LIMIT 10;
         """)
 
         recent_sales = cursor.fetchall()
