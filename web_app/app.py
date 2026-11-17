@@ -857,9 +857,21 @@ def add_sale():
 
         return redirect(url_for("sales"))
 
+    except ValueError as e:
+        conn.rollback()
+
+        set_toast(str(e), "error")
+
+        return redirect(url_for("sales"))
+
     except Exception as e:
         conn.rollback()
-        return f"Error in creating sale: {e}"
+
+        set_toast("Unable to create sale. Please try again.", "error")
+
+        print(f"Sale Error: {e}")
+
+        return redirect(url_for("sales"))
 
     finally:
         if cursor:

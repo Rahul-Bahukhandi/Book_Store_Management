@@ -1331,3 +1331,466 @@ textarea {
     .layout-menu-row { display: flex; align-items: center; min-height: 42px; margin-bottom: 8px; }
 }
 .app-layout .sale-detail-container { padding: 10px 5px 30px; }
+
+
+/* =========================================================
+   FINAL RESPONSIVE POLISH - BOOK STORE MANAGEMENT SYSTEM
+   Keeps the existing desktop theme and improves small screens.
+========================================================= */
+
+html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.dashboard,
+.page-container,
+.main-content {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.content-box,
+.card,
+.edit-card,
+.rental-form-section {
+    min-width: 0;
+}
+
+input,
+select,
+textarea,
+button {
+    font: inherit;
+}
+
+input,
+select,
+textarea {
+    min-width: 0;
+}
+
+button,
+a,
+input,
+select {
+    touch-action: manipulation;
+}
+
+.table-container,
+.sales-items-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+}
+
+.table-container table,
+.sales-items-table,
+.rental-table {
+    width: 100%;
+}
+
+/* Mid-size tablets */
+@media (min-width: 601px) and (max-width: 900px) {
+    .sidebar {
+        flex: 0 0 205px;
+        width: 205px;
+        padding: 22px 12px;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .page-container {
+        padding: 22px;
+    }
+
+    .content-box {
+        padding: 20px;
+    }
+
+    .book-form input {
+        flex: 1 1 220px;
+    }
+}
+
+/* Phones and narrow tablets */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    .dashboard {
+        display: block;
+        width: 100%;
+    }
+
+    /* Slide-in navigation for dashboard and rentals */
+    .sidebar {
+        display: flex;
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: min(290px, 86vw);
+        height: 100vh;
+        height: 100dvh;
+        min-height: 100vh;
+        overflow-y: auto;
+        z-index: 1200;
+        flex: none;
+        transform: translateX(-105%);
+        transition: transform 0.25s ease;
+        box-shadow: 8px 0 28px rgba(15, 23, 42, 0.18);
+    }
+
+    .sidebar.show {
+        display: flex;
+        position: fixed;
+        transform: translateX(0);
+    }
+
+    .sidebar nav a {
+        padding: 15px 14px;
+        font-size: 15px;
+    }
+
+    .main-content {
+        width: 100%;
+        margin: 0;
+        padding: 16px;
+    }
+
+    .menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        min-width: 44px;
+        height: 44px;
+        padding: 8px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #1e293b;
+        font-size: 21px;
+    }
+
+    .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .topbar h2 {
+        flex: 1 1 auto;
+        min-width: 0;
+        font-size: 20px;
+        line-height: 1.3;
+    }
+
+    .topbar p {
+        flex: 1 1 100%;
+        margin: 0;
+    }
+
+    .cards,
+    .report-cards {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .card h1 {
+        font-size: 26px;
+    }
+
+    .content-box {
+        width: 100%;
+        margin-bottom: 16px;
+        padding: 16px;
+        border-radius: 9px;
+    }
+
+    .content-box h2 {
+        font-size: 18px;
+        line-height: 1.35;
+        margin-bottom: 14px;
+    }
+
+    /* Standalone books, customers and sales pages */
+    .page-container {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .page-container .topbar {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .page-container .topbar h2 {
+        flex: 1 1 100%;
+        font-size: 21px;
+    }
+
+    .page-container .topbar a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 100%;
+        min-height: 42px;
+        padding: 10px 14px;
+        border-radius: 7px;
+        background: #eff6ff;
+        color: #1d4ed8;
+        text-decoration: none;
+    }
+
+    /* Stack forms and make controls comfortable to tap */
+    .book-form,
+    .search-form,
+    .sales-filter-form {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .book-form input,
+    .search-form input,
+    .search-form select,
+    .sales-form input,
+    .sales-form select,
+    .filter-group,
+    .filter-group input,
+    .sales-items-table input,
+    .sales-items-table select,
+    .rental-form-grid input,
+    .rental-form-grid select {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .book-form input,
+    .search-form input,
+    .search-form select,
+    .sales-form input,
+    .sales-form select,
+    .filter-group input,
+    .rental-form-grid input,
+    .rental-form-grid select {
+        min-height: 44px;
+        font-size: 16px;
+    }
+
+    .book-form button,
+    .search-form button,
+    .search-form a,
+    .add-book-btn,
+    .create-sale-btn,
+    .rental-submit-btn {
+        width: 100%;
+        min-height: 44px;
+        text-align: center;
+    }
+
+    .filter-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .filter-actions > *,
+    .filter-actions .back-btn {
+        width: 100%;
+        min-height: 44px;
+        text-align: center;
+    }
+
+    .sales-filter-form {
+        padding: 14px;
+    }
+
+    /* Tables remain readable and can be swiped horizontally */
+    .table-container table,
+    .sales-items-table,
+    .rental-table {
+        min-width: 620px;
+    }
+
+    th,
+    td {
+        padding: 11px 10px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        min-height: 38px;
+        padding: 9px 11px;
+        white-space: nowrap;
+    }
+
+    .delete-form {
+        margin-left: 4px;
+    }
+
+    .rental-form-section {
+        padding: 17px;
+    }
+
+    .rental-form-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .rental-submit-btn,
+    .rental-back-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .rental-actions form {
+        display: inline-block;
+        margin: 2px;
+    }
+
+    /* Edit book / customer forms */
+    .edit-container {
+        width: 100%;
+        padding: 22px 14px;
+    }
+
+    .edit-header {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+        margin-bottom: 20px;
+    }
+
+    .edit-header h1 {
+        font-size: 23px;
+        line-height: 1.3;
+    }
+
+    .edit-header .back-btn {
+        text-align: center;
+    }
+
+    .edit-card {
+        padding: 18px;
+    }
+
+    .card-heading {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .form-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .form-group input {
+        min-height: 44px;
+        font-size: 16px;
+    }
+
+    .form-actions {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 10px;
+        margin-top: 24px;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 44px;
+        text-align: center;
+    }
+
+    .auth-container {
+        padding: 16px;
+    }
+
+    .auth-box {
+        padding: 25px 20px;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+    .main-content,
+    .page-container {
+        padding: 11px;
+    }
+
+    .content-box {
+        padding: 13px;
+    }
+
+    .topbar h2,
+    .page-container .topbar h2 {
+        font-size: 18px;
+    }
+
+    .card h1 {
+        font-size: 23px;
+    }
+
+    .edit-card {
+        padding: 14px;
+    }
+
+    .auth-box {
+        padding: 22px 16px;
+    }
+}
+
+/* Reduce animation for users who request it */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

@@ -169,3 +169,110 @@
            padding: 15px;
        }
    }
+
+
+   /* Responsive improvements for the Sale Details / Print Bill page */
+.sale-detail-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    min-width: 0;
+}
+
+.items-card {
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 700px) {
+    .sale-detail-container {
+        padding: 18px 14px;
+    }
+
+    .sale-detail-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .header-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .header-actions .print-btn,
+    .header-actions .back-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 44px;
+        text-align: center;
+    }
+
+    .detail-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .detail-card,
+    .items-card {
+        padding: 17px;
+    }
+
+    .detail-row {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 7px 12px;
+    }
+
+    .detail-row strong {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        text-align: left;
+    }
+
+    .items-table {
+        min-width: 620px;
+    }
+
+    .total-section {
+        justify-content: stretch;
+    }
+
+    .total-box {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+@media (max-width: 380px) {
+    .sale-detail-container {
+        padding: 12px 10px;
+    }
+
+    .detail-card,
+    .items-card {
+        padding: 13px;
+    }
+}
+
+@media print {
+    .sale-detail-container {
+        max-width: none;
+        padding: 10px;
+    }
+
+    .items-card {
+        overflow: visible;
+    }
+
+    .items-table {
+        min-width: 0;
+    }
+}

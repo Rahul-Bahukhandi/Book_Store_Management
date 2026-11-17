@@ -271,3 +271,14 @@
 
     </section>
 {% endblock %}
+
+{% block page_scripts %}
+    {% if toast %}
+    <script>
+        showToast(
+            {{ toast.message | tojson }},
+            {{ toast.category | tojson }}
+        );
+    </script>
+    {% endif %}
+{% endblock %}
