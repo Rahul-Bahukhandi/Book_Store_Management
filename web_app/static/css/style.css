@@ -1,0 +1,1796 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    background: #1e293b;
+    color: white;
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar nav a {
+    display: block;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 14px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: #334155;
+    color: white;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: calc(100% - 28px);
+    margin: auto 14px 20px;
+    padding: 12px;
+    background: #334155;
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid #475569;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.logout-btn:hover {
+    background: #475569;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 25px;
+    min-width: 0;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.menu-btn {
+    display: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* Summary Cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #00000010;
+}
+
+.card h3 {
+    color: #64748b;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.card h1 {
+    color: #1e293b;
+    font-size: 30px;
+}
+
+/* Recent Sales */
+.content-box {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+.content-box h2 {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 450px;
+}
+
+th,
+td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background: #f8fafc;
+}
+
+
+/* Book Management Page */
+
+.page-container {
+    padding: 25px;
+}
+
+.page-container .topbar {
+    margin-bottom: 25px;
+}
+
+.page-container .topbar a {
+    text-decoration: none;
+    color: #2563eb;
+}
+
+/* Forms */
+
+.book-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* Forms */
+
+.book-form input,
+.search-form input,
+.search-form select {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.book-form input {
+    flex: 1 1 180px;
+}
+
+.book-form button,
+.search-form button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.book-form button:hover,
+.search-form button:hover {
+    background: #1d4ed8;
+}
+
+
+/* Search and Category Filter */
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.search-form input {
+    width: 300px;
+    max-width: 100%;
+}
+
+.search-form select {
+    min-width: 180px;
+    background: white;
+    cursor: pointer;
+}
+
+.search-form button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background: #1d4ed8;
+}
+
+.search-form a {
+    background: #64748b;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.search-form a:hover {
+    background: #475569;
+}
+
+
+/* Table */
+
+.table-container {
+    overflow-x: auto;
+}
+
+.edit-btn {
+    display: inline-block;
+    background: #16a34a;
+    color: white;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.delete-form {
+    display: inline-block;
+}
+
+.delete-btn {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background: #15803d;
+}
+
+.delete-btn:hover {
+    background: #b91c1c;
+}
+
+/* ==============================
+   EDIT BOOK PAGE
+================================ */
+
+.edit-page {
+    background: #f1f5f9;
+    min-height: 100vh;
+}
+
+.edit-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 45px 25px;
+}
+
+/* Header */
+
+.edit-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.breadcrumb {
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.edit-header h1 {
+    color: #1e293b;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.back-btn {
+    background: white;
+    color: #334155;
+    padding: 11px 16px;
+    border-radius: 7px;
+    text-decoration: none;
+    border: 1px solid #e2e8f0;
+    white-space: nowrap;
+}
+
+/* Form Card */
+
+.edit-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px #00000008;
+}
+
+.card-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.book-icon {
+    background: #eff6ff;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 25px;
+}
+
+.card-heading h2 {
+    color: #1e293b;
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+.card-heading p {
+    color: #64748b;
+    font-size: 13px;
+}
+
+/* Form Grid */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.full-width {
+    grid-column: 1 / 3;
+}
+
+.form-group label {
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    outline: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px #2563eb15;
+}
+
+/* Form Buttons */
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 35px;
+    padding-top: 22px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.cancel-btn,
+.save-btn {
+    padding: 12px 22px;
+    border-radius: 7px;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.save-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+}
+
+.save-btn:hover {
+    background: #1d4ed8;
+}
+
+.cancel-btn:hover {
+    background: #e2e8f0;
+}
+
+.footer-text {
+    text-align: center;
+    color: #94a3b8;
+    margin-top: 30px;
+    font-size: 13px;
+}
+
+/* ADMIN AUTHENTICATION */
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 420px;
+    padding: 35px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.auth-box h2,
+.auth-box h3 {
+    text-align: center;
+    color: #1e293b;
+    margin-bottom: 25px;
+}
+
+.auth-tabs {
+    display: flex;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.auth-tabs button {
+    flex: 1;
+    padding: 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.auth-tabs button.active {
+    border-bottom: 3px solid #1e293b;
+    font-weight: 600;
+}
+
+.auth-box form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.auth-box input:focus {
+    outline: none;
+    border-color: #64748b;
+}
+
+.auth-box form > button {
+    padding: 12px;
+    background: #1e293b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.auth-box form p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.auth-box form a {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+@media (max-width: 480px) {
+    .auth-box {
+        padding: 25px 20px;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        display: none;
+    }
+
+    .sidebar.show {
+        display: block;
+        position: absolute;
+        z-index: 10;
+        min-height: 100vh;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+}
+
+
+/* =====================================
+   SALES MANAGEMENT PAGE
+===================================== */
+
+/* Sales Form */
+.sales-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.sales-form label {
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.sales-form select,
+.sales-form input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.sales-form select:focus,
+.sales-form input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px #2563eb15;
+}
+
+/* Sales Heading */
+.sales-form h3 {
+    color: #1e293b;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Sales Items Table */
+.sales-items-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 15px;
+}
+
+.sales-items-table {
+    width: 100%;
+    min-width: 550px;
+    border-collapse: collapse;
+}
+
+.sales-items-table th {
+    background: #f1f5f9;
+    color: #334155;
+    padding: 14px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.sales-items-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.sales-items-table select,
+.sales-items-table input {
+    min-width: 120px;
+}
+
+/* Add Book Button */
+.add-book-btn {
+    width: fit-content;
+    background: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+    padding: 11px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.add-book-btn:hover {
+    background: #dbeafe;
+}
+
+/* Remove Item Button */
+.remove-item {
+    background: #fee2e2;
+    color: #dc2626;
+    border: none;
+    padding: 9px 14px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.remove-item:hover {
+    background: #fecaca;
+}
+
+/* Create Sale Button */
+.create-sale-btn {
+    width: fit-content;
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 13px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.create-sale-btn:hover {
+    background: #1d4ed8;
+}
+
+/* Responsive Sales Design */
+@media (max-width: 600px) {
+
+    .sales-form {
+        gap: 14px;
+    }
+
+    .add-book-btn,
+    .create-sale-btn {
+        width: 100%;
+    }
+
+    .sales-items-table {
+        min-width: 550px;
+    }
+}
+
+/* Sales Search and Date Filters */
+
+.sales-filter-form {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0 25px;
+    padding: 18px;
+    background: #f8f9fc;
+    border-radius: 8px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    min-width: 180px;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: #34495e;
+    font-size: 14px;
+}
+
+.filter-group input {
+    padding: 11px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    width: 100%;
+}
+
+.filter-group input:focus {
+    border-color: #3498db;
+}
+
+.filter-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-actions .create-sale-btn {
+    margin: 0;
+    padding: 11px 16px;
+}
+
+.filter-actions .back-btn {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* ==================================================
+   RESPONSIVE LAYOUT OVERRIDES
+   Layout only: existing colors and visual theme unchanged
+================================================== */
+
+/* Prevent page-level horizontal overflow */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.dashboard {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.sidebar {
+    flex: 0 0 240px;
+}
+
+.main-content {
+    min-width: 0;
+    width: 100%;
+}
+
+.content-box,
+.card,
+.edit-card {
+    min-width: 0;
+}
+
+.table-container,
+.sales-items-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    width: 100%;
+}
+
+img,
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .dashboard {
+        align-items: stretch;
+    }
+
+    .sidebar {
+        flex-basis: 210px;
+        width: 210px;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .report-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .page-container {
+        padding: 20px;
+    }
+
+    .edit-container {
+        padding: 30px 20px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    .dashboard {
+        display: block;
+        width: 100%;
+    }
+
+    /* Mobile navigation drawer */
+    .sidebar {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: min(280px, 85vw);
+        min-height: 100vh;
+        height: 100vh;
+        overflow-y: auto;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+    }
+
+    .sidebar.show {
+        display: block;
+        position: fixed;
+        transform: translateX(0);
+    }
+
+    .main-content {
+        width: 100%;
+        padding: 16px;
+        margin: 0;
+    }
+
+    .menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        min-width: 42px;
+        min-height: 42px;
+    }
+
+    .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .topbar h2 {
+        flex: 1 1 auto;
+        min-width: 0;
+        font-size: 20px;
+    }
+
+    .topbar p {
+        flex: 1 1 100%;
+        margin: 0;
+    }
+
+    .cards,
+    .report-cards {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .card h1 {
+        font-size: 26px;
+    }
+
+    .content-box {
+        width: 100%;
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+
+    .content-box h2 {
+        font-size: 18px;
+        margin-bottom: 14px;
+    }
+
+    .page-container {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .page-container .topbar {
+        align-items: flex-start;
+    }
+
+    .page-container .topbar h2 {
+        flex: 1 1 100%;
+    }
+
+    .page-container .topbar a {
+        max-width: 100%;
+    }
+
+    /* Keep wide tables usable with horizontal scrolling */
+    .table-container table,
+    .sales-items-wrapper table {
+        min-width: 550px;
+    }
+
+    /* Forms stack vertically */
+    .book-form,
+    .search-form,
+    .sales-filter-form {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .book-form input,
+    .search-form input,
+    .search-form select,
+    .filter-group,
+    .filter-group input,
+    .sales-form select,
+    .sales-form input {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .filter-actions {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-actions > * {
+        width: 100%;
+        text-align: center;
+    }
+
+    .book-form button,
+    .search-form button,
+    .search-form a,
+    .add-book-btn,
+    .create-sale-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .edit-container {
+        width: 100%;
+        padding: 20px 14px;
+    }
+
+    .edit-header {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .edit-header h1 {
+        font-size: 23px;
+    }
+
+    .edit-card {
+        padding: 18px;
+    }
+
+    .card-heading {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .form-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .form-actions {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 10px;
+        margin-top: 24px;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .sales-items-table {
+        min-width: 550px;
+    }
+
+    .report-card {
+        padding: 18px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+    .main-content {
+        padding: 12px;
+    }
+
+    .page-container {
+        padding: 10px;
+    }
+
+    .content-box {
+        padding: 13px;
+    }
+
+    .topbar h2 {
+        font-size: 18px;
+    }
+
+    .card h1 {
+        font-size: 23px;
+    }
+
+    .edit-card {
+        padding: 14px;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .sidebar {
+        transition: none;
+    }
+}
+
+
+/* TOAST NOTIFICATION */
+
+.toast-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 99999;
+
+    min-width: 280px;
+    max-width: 380px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    padding: 15px 18px;
+
+    background: #ffffff;
+    color: #1e293b;
+
+    border-radius: 8px;
+    border-left: 5px solid #16a34a;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+
+    animation: toastSlide 0.3s ease;
+}
+
+.toast-message.error {
+    border-left-color: #dc2626;
+}
+
+.toast-message.success {
+    border-left-color: #16a34a;
+}
+
+.toast-close {
+    border: none;
+    background: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #64748b;
+}
+
+@keyframes toastSlide {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .toast-message {
+        left: 15px;
+        right: 15px;
+        min-width: auto;
+    }
+}
+
+
+/* =====================================
+   BOOK RENTALS PAGE
+===================================== */
+
+/* Rental Form Section */
+.rental-form-section {
+    margin-bottom: 20px;
+    padding: 28px;
+}
+
+.rental-form-section h2 {
+    color: #1e293b;
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+/* Rental Form */
+.rental-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 10px;
+}
+
+.rental-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.rental-form-grid > div {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.rental-form-grid label {
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.rental-form-grid input,
+.rental-form-grid select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #1e293b;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.rental-form-grid input:focus,
+.rental-form-grid select:focus {
+    border-color: #1e293b;
+    box-shadow: 0 0 0 3px #1e293b15;
+}
+
+/* Rent Book Button */
+.rental-submit-btn {
+    width: fit-content;
+    min-width: 140px;
+    padding: 12px 24px;
+    background: #1e293b;
+    color: #ffffff;
+    border: none;
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.rental-submit-btn:hover {
+    background: #334155;
+    transform: translateY(-1px);
+}
+
+/* Back to Dashboard Button */
+.rental-back-btn {
+    display: inline-block;
+    padding: 11px 17px;
+    background: #1e293b;
+    color: #ffffff;
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.rental-back-btn:hover {
+    background: #334155;
+}
+
+/* Rental Form Responsive */
+@media (max-width: 600px) {
+
+    .rental-form-section {
+        padding: 18px;
+    }
+
+    .rental-form-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+
+    .rental-submit-btn {
+        width: 100%;
+    }
+
+    .rental-back-btn {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+
+
+/* SHARED FIXED SIDEBAR LAYOUT */
+.app-layout { display: block; min-height: 100vh; }
+.app-layout > .sidebar {
+    position: fixed; top: 0; left: 0; bottom: 0;
+    width: 240px; height: 100vh; min-height: 100vh;
+    overflow-y: auto; z-index: 1000;
+}
+.app-layout > .main-content {
+    margin-left: 240px; width: calc(100% - 240px); min-height: 100vh;
+}
+.layout-menu-row { display: none; }
+@media (max-width: 900px) and (min-width: 601px) {
+    .app-layout > .sidebar { width: 210px; }
+    .app-layout > .main-content { margin-left: 210px; width: calc(100% - 210px); }
+}
+@media (max-width: 600px) {
+    .app-layout { display: block; }
+    .app-layout > .sidebar {
+        width: min(280px, 85vw); transform: translateX(-100%);
+        transition: transform 0.25s ease;
+    }
+    .app-layout > .sidebar.show { transform: translateX(0); }
+    .app-layout > .main-content { margin-left: 0; width: 100%; }
+    .layout-menu-row { display: flex; align-items: center; min-height: 42px; margin-bottom: 8px; }
+}
+.app-layout .sale-detail-container { padding: 10px 5px 30px; }
+
+
+/* =========================================================
+   FINAL RESPONSIVE POLISH - BOOK STORE MANAGEMENT SYSTEM
+   Keeps the existing desktop theme and improves small screens.
+========================================================= */
+
+html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.dashboard,
+.page-container,
+.main-content {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.content-box,
+.card,
+.edit-card,
+.rental-form-section {
+    min-width: 0;
+}
+
+input,
+select,
+textarea,
+button {
+    font: inherit;
+}
+
+input,
+select,
+textarea {
+    min-width: 0;
+}
+
+button,
+a,
+input,
+select {
+    touch-action: manipulation;
+}
+
+.table-container,
+.sales-items-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+}
+
+.table-container table,
+.sales-items-table,
+.rental-table {
+    width: 100%;
+}
+
+/* Mid-size tablets */
+@media (min-width: 601px) and (max-width: 900px) {
+    .sidebar {
+        flex: 0 0 205px;
+        width: 205px;
+        padding: 22px 12px;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .page-container {
+        padding: 22px;
+    }
+
+    .content-box {
+        padding: 20px;
+    }
+
+    .book-form input {
+        flex: 1 1 220px;
+    }
+}
+
+/* Phones and narrow tablets */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    .dashboard {
+        display: block;
+        width: 100%;
+    }
+
+    /* Slide-in navigation for dashboard and rentals */
+    .sidebar {
+        display: flex;
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: min(290px, 86vw);
+        height: 100vh;
+        height: 100dvh;
+        min-height: 100vh;
+        overflow-y: auto;
+        z-index: 1200;
+        flex: none;
+        transform: translateX(-105%);
+        transition: transform 0.25s ease;
+        box-shadow: 8px 0 28px rgba(15, 23, 42, 0.18);
+    }
+
+    .sidebar.show {
+        display: flex;
+        position: fixed;
+        transform: translateX(0);
+    }
+
+    .sidebar nav a {
+        padding: 15px 14px;
+        font-size: 15px;
+    }
+
+    .main-content {
+        width: 100%;
+        margin: 0;
+        padding: 16px;
+    }
+
+    .menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        min-width: 44px;
+        height: 44px;
+        padding: 8px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #1e293b;
+        font-size: 21px;
+    }
+
+    .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .topbar h2 {
+        flex: 1 1 auto;
+        min-width: 0;
+        font-size: 20px;
+        line-height: 1.3;
+    }
+
+    .topbar p {
+        flex: 1 1 100%;
+        margin: 0;
+    }
+
+    .cards,
+    .report-cards {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .card h1 {
+        font-size: 26px;
+    }
+
+    .content-box {
+        width: 100%;
+        margin-bottom: 16px;
+        padding: 16px;
+        border-radius: 9px;
+    }
+
+    .content-box h2 {
+        font-size: 18px;
+        line-height: 1.35;
+        margin-bottom: 14px;
+    }
+
+    /* Standalone books, customers and sales pages */
+    .page-container {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .page-container .topbar {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .page-container .topbar h2 {
+        flex: 1 1 100%;
+        font-size: 21px;
+    }
+
+    .page-container .topbar a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 100%;
+        min-height: 42px;
+        padding: 10px 14px;
+        border-radius: 7px;
+        background: #eff6ff;
+        color: #1d4ed8;
+        text-decoration: none;
+    }
+
+    /* Stack forms and make controls comfortable to tap */
+    .book-form,
+    .search-form,
+    .sales-filter-form {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .book-form input,
+    .search-form input,
+    .search-form select,
+    .sales-form input,
+    .sales-form select,
+    .filter-group,
+    .filter-group input,
+    .sales-items-table input,
+    .sales-items-table select,
+    .rental-form-grid input,
+    .rental-form-grid select {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .book-form input,
+    .search-form input,
+    .search-form select,
+    .sales-form input,
+    .sales-form select,
+    .filter-group input,
+    .rental-form-grid input,
+    .rental-form-grid select {
+        min-height: 44px;
+        font-size: 16px;
+    }
+
+    .book-form button,
+    .search-form button,
+    .search-form a,
+    .add-book-btn,
+    .create-sale-btn,
+    .rental-submit-btn {
+        width: 100%;
+        min-height: 44px;
+        text-align: center;
+    }
+
+    .filter-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .filter-actions > *,
+    .filter-actions .back-btn {
+        width: 100%;
+        min-height: 44px;
+        text-align: center;
+    }
+
+    .sales-filter-form {
+        padding: 14px;
+    }
+
+    /* Tables remain readable and can be swiped horizontally */
+    .table-container table,
+    .sales-items-table,
+    .rental-table {
+        min-width: 620px;
+    }
+
+    th,
+    td {
+        padding: 11px 10px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        min-height: 38px;
+        padding: 9px 11px;
+        white-space: nowrap;
+    }
+
+    .delete-form {
+        margin-left: 4px;
+    }
+
+    .rental-form-section {
+        padding: 17px;
+    }
+
+    .rental-form-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .rental-submit-btn,
+    .rental-back-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .rental-actions form {
+        display: inline-block;
+        margin: 2px;
+    }
+
+    /* Edit book / customer forms */
+    .edit-container {
+        width: 100%;
+        padding: 22px 14px;
+    }
+
+    .edit-header {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+        margin-bottom: 20px;
+    }
+
+    .edit-header h1 {
+        font-size: 23px;
+        line-height: 1.3;
+    }
+
+    .edit-header .back-btn {
+        text-align: center;
+    }
+
+    .edit-card {
+        padding: 18px;
+    }
+
+    .card-heading {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .form-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .form-group input {
+        min-height: 44px;
+        font-size: 16px;
+    }
+
+    .form-actions {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 10px;
+        margin-top: 24px;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 44px;
+        text-align: center;
+    }
+
+    .auth-container {
+        padding: 16px;
+    }
+
+    .auth-box {
+        padding: 25px 20px;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+    .main-content,
+    .page-container {
+        padding: 11px;
+    }
+
+    .content-box {
+        padding: 13px;
+    }
+
+    .topbar h2,
+    .page-container .topbar h2 {
+        font-size: 18px;
+    }
+
+    .card h1 {
+        font-size: 23px;
+    }
+
+    .edit-card {
+        padding: 14px;
+    }
+
+    .auth-box {
+        padding: 22px 16px;
+    }
+}
+
+/* Reduce animation for users who request it */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

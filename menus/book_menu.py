@@ -1,4 +1,3 @@
-
 from models.book import Book
 
 from services.book_service import (
@@ -6,7 +5,7 @@ from services.book_service import (
     view_books,
     search_book,
     update_book,
-    delete_book
+    delete_book,
 )
 
 
@@ -50,17 +49,25 @@ class BookMenu:
                     print(f"Error: Enter only numeric values for Book ID.")
                 finally:
                     print("Search operation completed.")
-                
 
             elif choice == "4":
+                try:
+                    book_id = int(input("Enter Book ID: "))
+                    update_book(book_id)
 
-                book_id = int(input("Enter Book ID: "))
-                update_book(book_id)
+                except ValueError as e:
+                    print(f"Error: Enter only numeric values for Book ID.")
+                finally:
+                    print("Update operation completed.")
 
             elif choice == "5":
-
-                book_id = int(input("Enter Book ID: "))
-                delete_book(book_id)
+                try:
+                    book_id = int(input("Enter Book ID: "))
+                    delete_book(book_id)
+                except ValueError as e:
+                    print(f"Error: Enter only numeric values for Book ID.")
+                finally:
+                    print("Delete operation completed.")
 
             elif choice == "0":
                 break

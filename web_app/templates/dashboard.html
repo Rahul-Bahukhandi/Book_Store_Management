@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | BookStore{% endblock %}
+{% block content %}
+<!-- Topbar -->
+        <header class="topbar">
+          <h2>Dashboard</h2>
+          <p>Welcome, Admin!</p>
+        </header>
+        <!-- Summary Cards -->
+        <section class="cards">
+          <div class="card">
+            <h3>Total Books</h3>
+            <h1>{{total_books}}</h1>
+          </div>
+          <div class="card">
+            <h3>Total Customers</h3>
+            <h1>{{total_customers}}</h1>
+          </div>
+          <div class="card">
+            <h3>Total Sales</h3>
+            <h1>{{total_sales}}</h1>
+          </div>
+        </section>
+        <!-- Recent Sales -->
+        <section class="content-box">
+          <h2>Recent Sales</h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Sale ID</th>
+                  <th>Customer</th>
+                  <th>Sale Date</th>
+                  <th>Total Amount</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for sale in recent_sales %}
+
+                <tr>
+                  <td>{{ sale[0] }}</td>
+
+                  <td>{{ sale[1] }}</td>
+
+                  <td>{{ sale[2] }}</td>
+
+                  <td>₹{{ sale[3] }}</td>
+                </tr>
+
+                {% else %}
+
+                <tr>
+                  <td colspan="4">No recent sales found.</td>
+                </tr>
+
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </section>
+{% endblock %}
+{% block page_scripts %}
+{% if toast %}
+<script>
+    showToast({{ toast.message | tojson }}, {{ toast.category | tojson }});
+</script>
+{% endif %}
+{% endblock %}
