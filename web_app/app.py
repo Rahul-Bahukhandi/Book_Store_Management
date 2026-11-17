@@ -28,7 +28,7 @@ def inject_toast():
     return {
         "toast": session.pop("toast", None)
     }
-
+# Decorator In Python
 def login_required(route_function):
     @wraps(route_function)
     def wrapper(*args, **kwargs):
