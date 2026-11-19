@@ -17,11 +17,13 @@ app = Flask(__name__)
 
 app.secret_key = "bookstore_secret_key_change_later"
 
+
 def set_toast(message, category="success"):
     session["toast"] = {
         "message": message,
         "category": category
     }
+
 
 @app.context_processor
 def inject_toast():
@@ -29,6 +31,8 @@ def inject_toast():
         "toast": session.pop("toast", None)
     }
 # Decorator In Python
+
+
 def login_required(route_function):
     @wraps(route_function)
     def wrapper(*args, **kwargs):
@@ -36,6 +40,7 @@ def login_required(route_function):
             return redirect(url_for("admin_login"))
         return route_function(*args, **kwargs)
     return wrapper
+
 
 # ADMIN LOGIN
 @app.route("/admin/login", methods=["GET", "POST"])
@@ -97,6 +102,8 @@ def admin_login():
     return render_template("admin_auth.html")
 
 # ADMIN SIGN UP
+
+
 @app.route("/admin/signup", methods=["POST"])
 def admin_signup():
 
@@ -174,6 +181,8 @@ def admin_signup():
         conn.close()
 
 # ADMIN LOGOUT
+
+
 @app.route("/admin/logout")
 def admin_logout():
 
@@ -182,6 +191,7 @@ def admin_logout():
     set_toast("You have been logged out successfully!", "success")
 
     return redirect(url_for("admin_login"))
+
 
 # Dashboard
 @app.route('/')
@@ -234,6 +244,7 @@ def dashboard():
         if cursor:
             cursor.close()
         conn.close()
+
 
 # View And Search Books
 @app.route("/books")
@@ -288,6 +299,8 @@ def books():
         conn.close()
 
 # ADD NEW BOOK
+
+
 @app.route("/books/add", methods=["Post"])
 @login_required
 def add_book():
@@ -322,6 +335,8 @@ def add_book():
         conn.close()
 
 # Edit Book Page
+
+
 @app.route("/books/edit/<int:book_id>")
 @login_required
 def edit_book(book_id):
@@ -351,6 +366,8 @@ def edit_book(book_id):
         conn.close()
 
 # UPDATE Book
+
+
 @app.route("/books/update/<int:book_id>", methods=["POST"])
 @login_required
 def update_book(book_id):
@@ -392,6 +409,8 @@ def update_book(book_id):
         conn.close()
 
 # DELETE Book
+
+
 @app.route("/books/delete/<int:book_id>", methods=["POST"])
 @login_required
 def delete_book(book_id):
@@ -414,6 +433,7 @@ def delete_book(book_id):
         if cursor:
             cursor.close()
         conn.close()
+
 
 # Customers
 @app.route("/customers")
@@ -453,6 +473,8 @@ def customers():
         conn.close()
 
 # ADD NEW CUSTOMER
+
+
 @app.route("/customers/add", methods=["POST"])
 @login_required
 def add_customer():
@@ -494,8 +516,9 @@ def add_customer():
         if cursor:
             cursor.close()
         conn.close()
-
 # EDIT CUSTOMER PAGE
+
+
 @app.route("/customers/edit/<int:customer_id>")
 @login_required
 def edit_customer(customer_id):
@@ -538,6 +561,8 @@ def edit_customer(customer_id):
         conn.close()
 
 # UPDATE CUSTOMER
+
+
 @app.route("/customers/update/<int:customer_id>", methods=["POST"])
 @login_required
 def update_customer(customer_id):
@@ -587,6 +612,8 @@ def update_customer(customer_id):
         conn.close()
 
 # DELETE CUSTOMER
+
+
 @app.route("/customers/delete/<int:customer_id>", methods=["POST"])
 @login_required
 def delete_customer(customer_id):
@@ -632,6 +659,7 @@ def delete_customer(customer_id):
         if cursor:
             cursor.close()
         conn.close()
+
 
 # Sales
 @app.route("/sales")
@@ -734,6 +762,8 @@ def sales():
         conn.close()
 
 # ADD NEW SALE
+
+
 @app.route("/sales/add", methods=["POST"])
 @login_required
 def add_sale():
@@ -878,6 +908,8 @@ def add_sale():
         conn.close()
 
 # VIEW SALE DETAILS
+
+
 @app.route("/sales/<int:sale_id>")
 @login_required
 def view_sale_details(sale_id):
@@ -1029,6 +1061,8 @@ def rentals():
         conn.close()
 
 # CREATE A NEW BOOK RENTAL
+
+
 @app.route("/rentals/add", methods=["POST"])
 @login_required
 def add_rental():
@@ -1118,6 +1152,8 @@ def add_rental():
         conn.close()
 
 # RETURN A RENTED BOOK
+
+
 @app.route("/rentals/return/<int:rental_id>", methods=["POST"])
 @login_required
 def return_rental(rental_id):
@@ -1172,7 +1208,8 @@ def return_rental(rental_id):
         """, (book_id,))
 
         conn.commit()
-        set_toast(f"Book returned successfully. Final rent: Rs. {final_rent}", "success")
+        set_toast(
+            f"Book returned successfully. Final rent: Rs. {final_rent}", "success")
         return redirect(url_for("rentals"))
 
     except ValueError as e:
@@ -1191,6 +1228,8 @@ def return_rental(rental_id):
         conn.close()
 
 # CONVERT AN ACTIVE RENTAL INTO A SALE
+
+
 @app.route("/rentals/purchase/<int:rental_id>", methods=["POST"])
 @login_required
 def purchase_rental(rental_id):
@@ -1228,7 +1267,8 @@ def purchase_rental(rental_id):
         customer_id, book_id, daily_rent, rental_date, status, book_price = rental
 
         if status != "active":
-            raise ValueError("Only active rentals can be converted into a purchase!")
+            raise ValueError(
+                "Only active rentals can be converted into a purchase!")
 
         # Calculate accumulated rent up to the purchase date
         cursor.execute("""
@@ -1286,6 +1326,7 @@ def purchase_rental(rental_id):
         if cursor:
             cursor.close()
         conn.close()
+
 
 if __name__ == '__main__':
     app.run(debug=True)
