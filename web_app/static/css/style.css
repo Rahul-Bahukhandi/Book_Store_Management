@@ -108,18 +108,18 @@ body {
 }
 
 .card h3 {
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     color: #64748b;
     font-size: 15px;
     margin-bottom: 15px;
 }
 
 .card h1 {
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     color: #1e293b;
     font-size: 30px;
 }
